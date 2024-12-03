@@ -3,6 +3,7 @@ package com.coderscampus.assignment13.web;
 import java.util.Arrays;
 import java.util.Set;
 
+import com.coderscampus.assignment13.domain.Address;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -51,6 +52,8 @@ public class UserController {
 		User user = userService.findById(userId);
 		model.put("users", Arrays.asList(user));
 		model.put("user", user);
+		Address address = user.getAddress();
+		model.put("address", address);
 		return "users";
 	}
 	
