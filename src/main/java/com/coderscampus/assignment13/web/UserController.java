@@ -53,6 +53,9 @@ public class UserController {
 		model.put("users", Arrays.asList(user));
 		model.put("user", user);
 		Address address = user.getAddress();
+		if (address == null) {
+			address = new Address();
+		}
 		model.put("address", address);
 		return "users";
 	}
