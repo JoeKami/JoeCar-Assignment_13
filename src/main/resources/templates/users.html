@@ -9,39 +9,39 @@
 		<div th:if="${#lists.size(users) == 1}">
 			<form action="" method="post">
 				<div>
-					Username: <input type="text" th:field="${user.username}" />
+					Username: <input type="text" th:field="${user.username}"/>
 				</div>
 				<div>
-					Password: <input type="password" th:field="${user.password}" />
+					Password: <input type="password" th:field="${user.password}"/>
 				</div>
 				<div>
-					Full Name: <input type="text" th:field="${user.name}" />
+					Full Name: <input type="text" th:field="${user.name}"/>
 				</div>
 				<hr/>
 				<div>
-					Address Line 1: <input type="text" th:field="${address.addressLine1}" />
+					Address Line 1: <input type="text" th:field="${address.addressLine1}"/>
 				</div>
 				<div>
-					Address Line 2: <input type="text" th:field="${address.addressLine2}" />
+					Address Line 2: <input type="text" th:field="${address.addressLine2}"/>
 				</div>
 				<div>
-					City: <input type="text" th:field="${address.city}" />
+					City: <input type="text" th:field="${address.city}"/>
 				</div>
 				<div>
-					Region: <input type="text" th:field="${address.region}" />
+					Region: <input type="text" th:field="${address.region}"/>
 				</div>
 				<div>
-					Country: <input type="text" th:field="${address.country}" />
+					Country: <input type="text" th:field="${address.country}"/>
 				</div>
 				<div>
-					Zip Code: <input type="text" th:field="${address.zipCode}" />
+					Zip Code: <input type="text" th:field="${address.zipCode}"/>
 				</div>
 				<div>
-					<input type="submit" value="Update User Account" />
+					<input type="submit" value="Update User Account"/>
 				</div>
 			</form>
 			<form th:action="@{/users/{userId}/delete(userId=${user.userId})}" method="post">
-				<input type="submit" value="Delete User Account" />
+				<input type="submit" value="Delete User Account"/>
 			</form>
 			<hr/>
 			<div>
@@ -56,12 +56,13 @@
 		</div>
 		
 		<div th:unless="${#lists.size(users) == 1}" th:each="user : ${users}">
-		    <span type="button" th:action="@{/users/{userId}(userId=${user.userId})}" th:text="${user.userId}"></span><br/>
+		    <a th:href="@{/users/{userId}(userId=${user.userId})}"><u>${user.userId}</u></a><br/>
 			<span th:text="${user.username}"></span><br/>
 			<span th:text="${user.name}"></span><br/>
 			<span th:text="${user.password}"></span>
 			<div th:each="account : ${user.accounts}">
-				<span th:text="${account.accountName}"></span>
+				<a th:href="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}"><u th:text="${account.accountName}"></u>
+				</a><br/>
 			</div>
 			<hr/>
 		</div>
