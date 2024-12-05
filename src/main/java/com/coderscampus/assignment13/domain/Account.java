@@ -12,7 +12,7 @@ public class Account {
 	private String accountName;
 	private List<Transaction> transactions = new ArrayList<>();
 	private List<User> users = new ArrayList<>();
-	
+
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getAccountId() {
 		return accountId;
@@ -27,7 +27,7 @@ public class Account {
 	public void setAccountName(String accountName) {
 		this.accountName = accountName;
 	}
-	@OneToMany(mappedBy = "account", cascade = {CascadeType.ALL})
+	@OneToMany(mappedBy = "account", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval = true)
 	public List<Transaction> getTransactions() {
 		return transactions;
 	}

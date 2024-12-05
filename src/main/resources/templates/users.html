@@ -44,14 +44,14 @@
 				<input type="submit" value="Delete User Account"/>
 			</form>
 			<hr/>
-			<form action="" method="post">
+			<form action="@{/users/{userId}/accounts(userId=${user.userId})}" method="post">
 				<div>
 					<Span><b>Accounts</b></Span><br/>
 					<div th:each="account : ${user.accounts}">
 					<a th:href="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}"><u th:text="${account.accountName}"></u>
 					</a><br/>
 					</div>
-					<button th:href="@{/users/{userId}/accounts(userId=${user.userId})}">Create New Bank Account</button><br/>
+					<button type="submit">Create New Bank Account</button><br/>
 					<a th:href="@{/users}"><u>Back</u></a>
 				</div>
 			</form>

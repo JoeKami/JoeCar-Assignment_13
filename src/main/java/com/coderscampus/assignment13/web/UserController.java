@@ -87,6 +87,19 @@ public class UserController {
 		return "redirect:/users";
 	}
 
+	@PostMapping("/users/{userId}/accounts")
+	public String postNewAccount (@PathVariable Long userId, @ModelAttribute Account account) {
+		User user = userService.findById(userId);
+		user.getAccounts().add(account);
+
+		List<User> users = new ArrayList<>();
+		users.add(user);
+		account.setUsers(users);
+		userService.saveAccount(account);
+
+		return "redirect:/users/"+userId;
+	}
+
 	@GetMapping("/users/{userId}/accounts/{accountId}")
 	public String getOneAccount (ModelMap model, @PathVariable Long userId, @PathVariable Long accountId) {
 		User user = userService.findById(userId);
@@ -99,8 +112,12 @@ public class UserController {
 	}
 
 	@PostMapping("/users/{userId}/accounts/{accountId}")
-	public String postOneAccount (@PathVariable Account account) {
-		userService.saveAccount(account);
-		return "redirect:/users";
+	public String postOneAccount (@PathVariable Long accountId, @PathVariable Long userId, @ModelAttribute Account account) {
+		User user = userService.findById(userId);
+		Account existingAccount = userService.findAccountById(accountId);
+		existingAccount.setAccountName(account.getAccountName());
+
+		userService.saveAccount(existingAccount);
+		return "redirect:/users/"+userId;
 	}
 }

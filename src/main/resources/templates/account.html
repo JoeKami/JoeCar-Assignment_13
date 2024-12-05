@@ -5,8 +5,8 @@
     <title th:text="${account.accountName}"></title>
 </head>
 <body>
+    <h1 th:text="${account.accountName}"></h1>
     <form action="" method="post">
-        <div th:each="account : ${user.accounts}">
             <div>
                 Account Name: <input type="text" th:field="${account.accountName}"/>
             </div>
@@ -14,7 +14,6 @@
                 <input type="submit" value="Save Account"/>
             </div>
             <hr/>
-        </div>
         <a th:href="@{/users}"><u>Back</u></a>
     </form>
 </body>
