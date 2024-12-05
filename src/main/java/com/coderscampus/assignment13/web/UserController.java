@@ -56,6 +56,7 @@ public class UserController {
 		if (address == null) {
 			address = new Address();
 		}
+		model.addAttribute(address);
 		model.put("address", address);
 		return "users";
 	}

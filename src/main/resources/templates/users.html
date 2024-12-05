@@ -44,15 +44,17 @@
 				<input type="submit" value="Delete User Account"/>
 			</form>
 			<hr/>
-			<div>
-				<Span><b>Accounts</b></Span>
-				<div th:each="account : ${user.accounts}">
-				<a th:href="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}"><u th:text="${account.accountName}"></u>
-				</a><br/>
+			<form action="" method="post">
+				<div>
+					<Span><b>Accounts</b></Span>
+					<div th:each="account : ${user.accounts}">
+					<a th:href="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}"><u th:text="${account.accountName}"></u>
+					</a><br/>
+					</div>
+					<a th:href="@{/users/{userId}/accounts(userId=${user.userId})}" type="button">Create New Bank Account</a>
+					<a th:href="@{/users}"><u>Back</u></a>
 				</div>
-				<a th:href="@{/users/{userId}/accounts(userId=${user.userId})}" type="button">Create New Bank Account</a>
-				<a th:href="@{/users}"><u>Back</u></a>
-			</div>
+			</form>
 		</div>
 		
 		<div th:unless="${#lists.size(users) == 1}" th:each="user : ${users}">
