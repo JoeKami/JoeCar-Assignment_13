@@ -46,12 +46,12 @@
 			<hr/>
 			<form action="" method="post">
 				<div>
-					<Span><b>Accounts</b></Span>
+					<Span><b>Accounts</b></Span><br/>
 					<div th:each="account : ${user.accounts}">
 					<a th:href="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}"><u th:text="${account.accountName}"></u>
 					</a><br/>
 					</div>
-					<a th:href="@{/users/{userId}/accounts(userId=${user.userId})}" type="button">Create New Bank Account</a>
+					<button th:href="@{/users/{userId}/accounts(userId=${user.userId})}">Create New Bank Account</button><br/>
 					<a th:href="@{/users}"><u>Back</u></a>
 				</div>
 			</form>
