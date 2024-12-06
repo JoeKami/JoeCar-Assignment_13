@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1 th:text="${account.accountName}"></h1>
-    <form action="" method="post">
+    <form th:action="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}" method="post">
             <div>
                 Account Name: <input type="text" th:field="${account.accountName}"/>
             </div>

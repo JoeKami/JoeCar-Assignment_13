@@ -1,9 +1,6 @@
 package com.coderscampus.assignment13.web;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import com.coderscampus.assignment13.domain.Account;
 import com.coderscampus.assignment13.domain.Address;
@@ -64,7 +61,6 @@ public class UserController {
 		model.put("address", address);
 
 		List<Account> accounts = user.getAccounts();
-		model.addAttribute(accounts);
 		model.put("accounts", accounts);
 
 		return "users";
@@ -77,6 +73,9 @@ public class UserController {
 			user.getAddress().setUser(user);
 		}
 
+		for (Account account : user.getAccounts()) {
+			account.setUsers(Collections.singletonList(user));
+		}
 		userService.saveUser(user);
 		return "redirect:/users/"+user.getUserId();
 	}
@@ -89,15 +88,19 @@ public class UserController {
 
 	@PostMapping("/users/{userId}/accounts")
 	public String postNewAccount (@PathVariable Long userId, @ModelAttribute Account account) {
+		if (account.getAccountId() != null) {
+			account.setAccountId(null);
+		}
+
 		User user = userService.findById(userId);
-		user.getAccounts().add(account);
+		if (account.getAccountId() == null) {
+			account.setUsers(Collections.singletonList(user));
+			user.getAccounts().add(account);
+		}
 
-		List<User> users = new ArrayList<>();
-		users.add(user);
-		account.setUsers(users);
-		userService.saveAccount(account);
+		Account newAccount = userService.saveAccount(account);
 
-		return "redirect:/users/"+userId;
+		return "redirect:/users/"+userId+"/accounts/"+newAccount.getAccountId();
 	}
 
 	@GetMapping("/users/{userId}/accounts/{accountId}")
