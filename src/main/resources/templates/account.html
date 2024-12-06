@@ -5,16 +5,17 @@
     <title th:text="${account.accountName}"></title>
 </head>
 <body>
-    <h1 th:text="${account.accountName}"></h1>
-    <form th:action="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}" method="post">
-            <div>
-                Account Name: <input type="text" th:field="${account.accountName}"/>
-            </div>
-            <div>
-                <input type="submit" value="Save Account"/>
-            </div>
-            <hr/>
-        <a th:href="@{/users}"><u>Back</u></a>
-    </form>
+<h1 th:text="${account.accountName}"></h1>
+<form method="post"
+      th:action="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}">
+    <div>
+        Account Name: <input th:field="${account.accountName}" type="text"/>
+    </div>
+    <div>
+        <input type="submit" value="Save Account"/>
+    </div>
+    <hr/>
+    <a th:href="@{/users/{userId}(userId=${user.userId})}"><u>Back</u></a>
+</form>
 </body>
 </html>

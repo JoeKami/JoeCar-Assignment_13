@@ -27,7 +27,7 @@ public class Account {
 	public void setAccountName(String accountName) {
 		this.accountName = accountName;
 	}
-	@OneToMany(mappedBy = "account", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval = true)
+	@OneToMany(mappedBy = "account", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	public List<Transaction> getTransactions() {
 		return transactions;
 	}
