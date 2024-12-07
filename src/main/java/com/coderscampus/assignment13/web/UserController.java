@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -102,41 +100,4 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @PostMapping("/users/{userId}/accounts")
-    public String postNewAccount(@PathVariable Long userId, @ModelAttribute Account account) {
-        if (account.getAccountId() != null) {
-            account.setAccountId(null);
-        }
-
-        User user = userService.findById(userId);
-        if (account.getAccountId() == null) {
-            account.setUsers(Collections.singletonList(user));
-            user.getAccounts().add(account);
-        }
-
-        Account newAccount = userService.saveAccount(account);
-
-        return "redirect:/users/" + userId + "/accounts/" + newAccount.getAccountId();
-    }
-
-    @GetMapping("/users/{userId}/accounts/{accountId}")
-    public String getOneAccount(ModelMap model, @PathVariable Long userId, @PathVariable Long accountId) {
-        User user = userService.findById(userId);
-        model.put("user", user);
-
-        Account account = userService.findAccountById(accountId);
-        model.put("account", account);
-
-        return "account";
-    }
-
-    @PostMapping("/users/{userId}/accounts/{accountId}")
-    public String postOneAccount(@PathVariable Long accountId, @PathVariable Long userId, @ModelAttribute Account account) {
-        User user = userService.findById(userId);
-        Account existingAccount = userService.findAccountById(accountId);
-        existingAccount.setAccountName(account.getAccountName());
-
-        userService.saveAccount(existingAccount);
-        return "redirect:/users/" + userId;
-    }
 }
