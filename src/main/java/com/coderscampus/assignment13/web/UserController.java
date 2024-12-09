@@ -84,11 +84,11 @@ public class UserController {
         user.setAccounts(existingUser.getAccounts());
 
         if (address != null) {
-			address.setUser(user);
-			user.setAddress(address);
+            address.setUser(user);
+            user.setAddress(address);
         } else {
-			user.setAddress(existingUser.getAddress());
-		}
+            user.setAddress(existingUser.getAddress());
+        }
 
         userService.saveUser(user);
         return "redirect:/users/" + user.getUserId();

@@ -21,9 +21,6 @@ public class AccountController {
 
     @PostMapping("/users/{userId}/accounts")
     public String postNewAccount(@PathVariable Long userId, @ModelAttribute Account account) {
-//        if (account.getAccountId() != null) {
-//            account.setAccountId(null);
-//        }
 
         User user = userService.findById(userId);
         if (account.getAccountId() == null) {
