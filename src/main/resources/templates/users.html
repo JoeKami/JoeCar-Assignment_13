@@ -53,26 +53,26 @@
                 <Span><b>Accounts</b></Span><br/>
                 <div th:each="account : ${user.accounts}">
                     <a th:href="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}"
-                       th:if="${account.accountId != null}"><u
-                            th:text="${account.accountName}"></u>
+                       th:if="${account.accountId != null}"
+                            th:text="${account.accountName}" class="a">
                     </a><br/>
                 </div>
                 <button type="submit">Create New Bank Account</button>
                 <br/>
-                <a th:href="@{/users}"><u>Back</u></a>
+                <a th:href="@{/users}" class="a">Back</a>
             </div>
         </form>
     </div>
 
-    <div th:each="user : ${users}" th:unless="${#lists.size(users) == 1}">
-        <a th:href="@{/users/{userId}(userId=${user.userId})}"><u th:text="${user.userId}"></u></a><br/>
+    <div th:each="user : ${users}" th:unless="${#lists.size(users) == 1}" class="user-details">
+        <a th:href="@{/users/{userId}(userId=${user.userId})}" th:text="${user.userId}" class="a"></a><br/>
         <span th:text="${user.username}"></span><br/>
         <span th:text="${user.name}"></span><br/>
         <span th:text="${user.password}"></span>
-        <div th:each="account : ${user.accounts}">
+        <div th:each="account : ${user.accounts}" class="account-details">
             <a th:href="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}"
-               th:if="${account.accountId != null}"><u
-                    th:text="${account.accountName}"></u>
+               th:if="${account.accountId != null}"
+                    th:text="${account.accountName}" class="a">
             </a><br/>
         </div>
         <hr/>
