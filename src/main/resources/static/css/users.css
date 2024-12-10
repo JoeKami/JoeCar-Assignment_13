@@ -5,7 +5,6 @@ body {
     background-color: #eee;
 }
 
-/* Container for the entire form */
 .form-users {
     max-width: 600px;
     padding: 20px;
@@ -16,19 +15,16 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Heading of the form */
 .form-users h1 {
     text-align: center;
     margin-bottom: 20px;
     color: #333;
 }
 
-/* Form field div styling */
 .form-users div {
     margin-bottom: 15px;
 }
 
-/* Input fields styling */
 .form-users input[type="text"],
 .form-users input[type="password"],
 .form-users input[type="submit"] {
@@ -40,7 +36,6 @@ body {
     box-sizing: border-box;
 }
 
-/* Submit button styling */
 .form-users input[type="submit"] {
     background-color: #007bff;
     border: none;
@@ -52,7 +47,6 @@ body {
     background-color: #0056b3;
 }
 
-/* Link styling */
 .form-users a {
     display: inline-block;
     margin-top: 3px;
@@ -66,7 +60,6 @@ body {
     text-decoration: underline;
 }
 
-/* Additional styles for account and action buttons */
 .form-users button {
     background-color: #28a745;
     border: none;
@@ -83,7 +76,6 @@ body {
     background-color: #218838;
 }
 
-/* Style for account links */
 .form-users u {
     color: #007bff;
     cursor: pointer;
