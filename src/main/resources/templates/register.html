@@ -1,31 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
-	<head>
-		<title>Create Account</title>
+<head>
+    <title>Create Account</title>
 
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/register.css}">
 
-	</head>
-	<body>
-		<h1>Create Your Account</h1>
-		
-		<form action="" method="post">
-			<div>
-				Username: <input type="text" th:field="${user.username}" />
-			</div>
-			<div>
-				Password: <input type="password" th:field="${user.password}" />
-			</div>
-			<div>
-				Full Name: <input type="text" th:field="${user.name}" />
-			</div>
-			<div>
-				<input type="submit" value="Create Account" /><hr/>
-				<a th:href="@{/users}"><u>Back</u></a>
-			</div>
-		</form>
+</head>
+<body>
 
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-
-	</body>
+<form action="" class="form-register" method="post">
+    <h1>Create Your Account</h1>
+    <div>
+        Username: <input th:field="${user.username}" type="text"/>
+    </div>
+    <div>
+        Password: <input th:field="${user.password}" type="password"/>
+    </div>
+    <div>
+        Full Name: <input th:field="${user.name}" type="text"/>
+    </div>
+    <div>
+        <input type="submit" value="Create Account"/>
+        <hr/>
+        <button onclick="window.location.href='/users'" type="button">Back</button>
+    </div>
+</form>
+</body>
 </html>

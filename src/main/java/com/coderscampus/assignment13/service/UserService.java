@@ -49,11 +49,6 @@ public class UserService {
         return userOpt.orElse(new User());
     }
 
-    public Account findAccountById(Long accountId) {
-        Optional<Account> accountOpt = accountRepo.findById(accountId);
-        return accountOpt.orElse(new Account());
-    }
-
     public User saveUser(User user) {
         if (user.getUserId() == null) {
             Account checking = new Account();
@@ -69,10 +64,6 @@ public class UserService {
             accountRepo.save(savings);
         }
         return userRepo.save(user);
-    }
-
-    public Account saveAccount(Account account) {
-        return accountRepo.save(account);
     }
 
     public void delete(Long userId) {

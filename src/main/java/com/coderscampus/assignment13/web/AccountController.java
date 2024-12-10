@@ -2,6 +2,7 @@ package com.coderscampus.assignment13.web;
 
 import com.coderscampus.assignment13.domain.Account;
 import com.coderscampus.assignment13.domain.User;
+import com.coderscampus.assignment13.service.AccountService;
 import com.coderscampus.assignment13.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,9 @@ public class AccountController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private AccountService accountService;
+
     @PostMapping("/users/{userId}/accounts")
     public String postNewAccount(@PathVariable Long userId, @ModelAttribute Account account) {
 
@@ -28,7 +32,7 @@ public class AccountController {
             user.getAccounts().add(account);
         }
 
-        Account newAccount = userService.saveAccount(account);
+        Account newAccount = accountService.saveAccount(account);
 
         return "redirect:/users/" + userId + "/accounts/" + newAccount.getAccountId();
     }
@@ -38,7 +42,7 @@ public class AccountController {
         User user = userService.findById(userId);
         model.put("user", user);
 
-        Account account = userService.findAccountById(accountId);
+        Account account = accountService.findAccountById(accountId);
         model.put("account", account);
 
         return "account";
@@ -47,10 +51,10 @@ public class AccountController {
     @PostMapping("/users/{userId}/accounts/{accountId}")
     public String postOneAccount(@PathVariable Long accountId, @PathVariable Long userId, @ModelAttribute Account account) {
         User user = userService.findById(userId);
-        Account existingAccount = userService.findAccountById(accountId);
+        Account existingAccount = accountService.findAccountById(accountId);
         existingAccount.setAccountName(account.getAccountName());
 
-        userService.saveAccount(existingAccount);
+        accountService.saveAccount(existingAccount);
         return "redirect:/users/" + userId;
     }
 }

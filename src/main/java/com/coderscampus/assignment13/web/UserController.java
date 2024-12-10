@@ -31,6 +31,9 @@ public class UserController {
 
     @PostMapping("/register")
     public String postCreateUser(User user) {
+        if (user.getUsername() == null || user.getPassword() == null || user.getName() == null) {
+            return "redirect:/users";
+        }
         System.out.println(user);
         userService.saveUser(user);
         return "redirect:/register";
@@ -82,6 +85,10 @@ public class UserController {
     public String postOneUser(@PathVariable Long userId, @ModelAttribute User user, @ModelAttribute Address address) {
         User existingUser = userService.findById(userId);
         user.setAccounts(existingUser.getAccounts());
+
+        if (user.getPassword() == null || user.getPassword().isEmpty()) {
+            user.setPassword(existingUser.getPassword());
+        }
 
         if (address != null) {
             address.setUser(user);
